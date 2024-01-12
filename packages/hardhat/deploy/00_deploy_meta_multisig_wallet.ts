@@ -19,11 +19,22 @@ const deployMetaMultiSigWallet: DeployFunction = async function (hre: HardhatRun
   */
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
+  const address: string[] = [];
+
+  address.push("0xCef9E53c3c1cB51CC2a5D194A0d10E9387a5B97B");
+  address.push("0x70997970C51812dc3A010C7d01b50e0d17dc79C8");
+  address.push("0x90F79bf6EB2c4f870365E785982E1f101E93b906");
+  address.push("0x97843608a00e2bbc75ab0C1911387E002565DEDE");
+
 
   await deploy("MetaMultiSigWallet", {
     from: deployer,
     // Contract constructor arguments
-    args: [31337, ["0x92B3ec5c8eD44ff3DD567021969281DE7d70d513"], 1],
+    args: [
+      31337,
+      address,
+      1,
+    ],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
@@ -31,7 +42,7 @@ const deployMetaMultiSigWallet: DeployFunction = async function (hre: HardhatRun
   });
 
   // Get the deployed contract
-  // const metaMultiSigWallet = await hre.ethers.getContract("MetaMultiSigWallet", deployer);
+  //  const metaMultiSigWallet = await hre.ethers.getContract("MetaMultiSigWallet", deployer);
 };
 
 export default deployMetaMultiSigWallet;
